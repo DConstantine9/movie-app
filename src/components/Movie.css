@@ -58,14 +58,6 @@
   flex-wrap: wrap;
 }
 
-
-/* .movie .movie__genres {
-  padding: 0;
-  margin: 5px 0;
-  display: flex;
-  flex-wrap: wrap;
-} */
-
 .genres li,
 .movie .movie__year {
   font-size: 14px;

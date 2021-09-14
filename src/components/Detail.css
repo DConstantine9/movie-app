@@ -1,0 +1,32 @@
+.detail__block {
+  width: 70%;
+  height: 100%;
+  display: flex;
+  align-items: flex-start;
+  padding-top: 50px;
+}
+
+.detail__block img {
+  margin-right: 30px;
+}
+
+.detail__info {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.detail__title {
+  margin: 0;
+  padding: 0;
+}
+
+.detail__genres {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+}
+
+.detail__genres li {
+  margin-right: 10px;
+}
