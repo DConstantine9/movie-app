@@ -30,3 +30,22 @@
 .detail__genres li {
   margin-right: 10px;
 }
+
+@media screen and (max-width: 415px) {
+  .detail__block {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+  }
+
+  .detail__block img {
+    margin:0;
+  }
+
+  .detail__poster {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

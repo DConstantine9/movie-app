@@ -21,3 +21,15 @@
   flex-wrap: wrap;
   text-align: center;
 }
+
+@media screen and (max-width: 415px) {
+  .about__container {
+    max-width: 90%;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .about__container {
+    max-width: 90%;
+  }
+}

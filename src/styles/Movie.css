@@ -67,3 +67,42 @@
 .movie .movie__column {
   width: 80%;
 }
+
+@media screen and (max-width: 415px) {
+  .movies {
+    width: 100%;
+    padding: 70px 0 0 0;
+  }
+
+  .movies .movie {
+    width: 100%;   
+  }
+
+  .movies .movie a {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .movies a:first-child {
+    display: flex;
+    align-items: center;
+  }
+  
+  .movie img {
+    margin: 0;    
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .movies {
+    width: 90%;
+  }
+
+  .movies .movie {
+    width: 100%;    
+  }
+
+  .movie .movie__column {
+    width: 100%;
+  }
+}
