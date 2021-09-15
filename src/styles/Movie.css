@@ -38,6 +38,17 @@
     0 8px 16px -8px rgba(0, 0, 0, 0.3), 0 -6px 16px -6px rgba(0, 0, 0, 0.025);
 }
 
+.movie img:before {
+  content: ' ';
+  display: block;
+  position: absolute;
+  height: 225px;
+  width: 100%;
+  background-image: url('../default_poster.jpg');
+  background-size: cover;
+  box-sizing: border-box;
+}
+
 .movie .movie__title,
 .movie .movie__year {
   font-weight: 300;

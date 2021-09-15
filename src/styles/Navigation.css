@@ -11,14 +11,15 @@
 
 .nav a {
   text-decoration: none;
-  color: black;
+  color: #adaeb9;
   text-transform: uppercase;
   font-size: 20px;
   text-align: center;
   font-weight: 600;
   margin-right: 25px;
+  transition: color 0.3s
 }
 
 .nav a:hover {
-  color: blue;
+  color: black;
 }
