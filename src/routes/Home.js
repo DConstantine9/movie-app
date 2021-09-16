@@ -1,12 +1,15 @@
 import React from "react";
 import axios from "axios";
 import Movie from "../components/Movie";
+import Pagianation from "../components/Pagination"
 import "../styles//Home.css";
 
 function App() {
 
   const [isLoading, setIsLoading] = React.useState(true)
   const [movies, setMovies] = React.useState([])
+  const [currentPage, setCurrentPage] = React.useState(1);
+  const [moviesPerPage] = React.useState(10);
 
   async function fetchData() {
     const {
@@ -22,6 +25,12 @@ function App() {
     fetchData()
   }, [])
 
+  const indexOfLastMovie = currentPage * moviesPerPage;
+  const indexOfFirstMovie = indexOfLastMovie - moviesPerPage;
+  const currentMovies = movies.slice(indexOfFirstMovie, indexOfLastMovie);
+
+  const paginate = pageNumber => setCurrentPage(pageNumber);
+
 
   return (
     <section className="container">
@@ -31,7 +40,7 @@ function App() {
         </div>
         ) : (
         <div className="movies">
-          {movies.map(movie => {
+          {currentMovies.map(movie => {
             return (
               <Movie 
                 key={movie.id}
@@ -47,6 +56,12 @@ function App() {
           </div>
         )
       }
+      <Pagianation 
+        moviesPerPage={moviesPerPage}
+        totalMovies={movies.length}
+        paginate={paginate}
+        currentPage={currentPage}
+      />
     </section>
   )
 }
