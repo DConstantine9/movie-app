@@ -1,12 +1,12 @@
 import React from "react";
 import {HashRouter, Route, Switch, Redirect} from "react-router-dom";
-import About from "./routes/About";
-import Home from "./routes/Home";
+import About from "./pages/About";
+import Home from "./pages/Home";
 import Navigation from "./components/Navigation";
 import Detail from "./components/Detail";
 import "./styles/App.css"
 
-function App() {
+const App = () => {
 
   const routes = [
     {
@@ -28,8 +28,8 @@ function App() {
 
   return(
     <HashRouter>
+      <Navigation />
       <Switch>
-        <Navigation />
         {routes.map(route => 
           <Route 
             component={route.component} 

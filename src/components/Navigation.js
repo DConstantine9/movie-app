@@ -2,7 +2,7 @@ import React from "react";
 import {Link} from "react-router-dom";
 import "../styles//Navigation.css"
 
-function Navigation() {
+const Navigation = () => {
   return (
     <div className="nav">
       <Link to="/">Главная</Link>

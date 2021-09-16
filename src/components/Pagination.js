@@ -1,7 +1,7 @@
 import React from 'react'
 import "../styles/Pagination.css"
 
-function Pagination({moviesPerPage, totalMovies, currentPage, paginate}) {
+const Pagination = ({moviesPerPage, totalMovies, currentPage, paginate}) => {
   const pageNumbers = []
 
   for (let i = 1; i <=Math.ceil(totalMovies / moviesPerPage); i++) {

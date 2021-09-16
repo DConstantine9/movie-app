@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 import "../styles//Movie.css"
 
-function Movie({id, year, title, summary, poster, genres}) {
+const Movie = ({id, year, title, summary, poster, genres}) => {
 
   function addDefaultPicture(e) {
     e.target.src = "../default_poster.img"

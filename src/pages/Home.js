@@ -4,8 +4,8 @@ import Movie from "../components/Movie";
 import Pagianation from "../components/Pagination"
 import "../styles//Home.css";
 
-function App() {
-
+const Home = () => {
+  
   const [isLoading, setIsLoading] = React.useState(true)
   const [movies, setMovies] = React.useState([])
   const [currentPage, setCurrentPage] = React.useState(1);
@@ -66,4 +66,4 @@ function App() {
   )
 }
 
-export default App;
+export default Home;

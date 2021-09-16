@@ -1,7 +1,7 @@
 import React from "react";
 import "../styles/Detail.css";
 
-function Detail(props) {
+const Detail = (props) => {
 
   let locationState = props.location.state
 
