@@ -16,7 +16,6 @@ function Pagination({moviesPerPage, totalMovies, currentPage, paginate}) {
             <li key={p} className='page__item'>
               <button 
                 onClick={() => paginate(p)} 
-                /* href='#' */ 
                 className={
                   currentPage === p 
                   ? 'page__active' : 'page__link'

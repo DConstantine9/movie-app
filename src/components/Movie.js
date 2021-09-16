@@ -4,6 +4,11 @@ import {Link} from "react-router-dom";
 import "../styles//Movie.css"
 
 function Movie({id, year, title, summary, poster, genres}) {
+
+  function addDefaultPicture(e) {
+    e.target.src = "../default_poster.img"
+  }
+
   return (
     <div className="movie">
       <Link to={{
@@ -18,7 +23,7 @@ function Movie({id, year, title, summary, poster, genres}) {
         }
       }}>
       
-        <img src={poster} alt={title} title={title} />
+        <img onError={addDefaultPicture} src={poster} alt={title} title={title} />
         <div  className="movie__column">
           <h3 className="movie__title">{title}</h3>
           <h5 className="movie__year">{year}</h5>

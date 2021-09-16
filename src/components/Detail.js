@@ -11,12 +11,15 @@ function Detail(props) {
     }
   })
 
+  function addDefaultPicture(e) {
+    e.target.src = "../default_poster.img"
+  }
  
   if (locationState) {
       return (
         <div className="detail__block">
           <div className="detail__poster"> 
-            <img src={locationState.poster} alt={locationState.title} title={locationState.title} />
+            <img onError={addDefaultPicture} src={locationState.poster} alt={locationState.title} title={locationState.title} />
           </div>
           <div className="detail__info">
             <h1 className="detail__title">{locationState.title}</h1>
