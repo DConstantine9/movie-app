@@ -3,6 +3,7 @@ import axios from "axios";
 import Movie from "../components/Movie";
 import Pagianation from "../components/Pagination"
 import "../styles//Home.css";
+import MySelect from "../components/MySelect";
 
 const Home = () => {
   
@@ -10,15 +11,17 @@ const Home = () => {
   const [movies, setMovies] = React.useState([])
   const [currentPage, setCurrentPage] = React.useState(1);
   const [moviesPerPage] = React.useState(10);
+  const [selectedSort, setSelectedSort] = React.useState("")
 
   async function fetchData() {
     const {
       data:
         {data: {movies}
       }
-    } = await axios.get("https://yts.mx/api/v2/list_movies.json?sort_by=raiting")
+    } = await axios.get("https://yts.mx/api/v2/list_movies.json")
     setIsLoading(false)
     setMovies(movies)
+    console.log(movies)
   }
     
   React.useEffect(() => {
@@ -30,6 +33,11 @@ const Home = () => {
   const currentMovies = movies.slice(indexOfFirstMovie, indexOfLastMovie);
 
   const paginate = pageNumber => setCurrentPage(pageNumber);
+  
+  const sortMovies = (sort) => {
+    setSelectedSort(sort)
+    setMovies([...movies].sort((a, b) => a[sort].localeCompare(b[sort])))
+  }
 
 
   return (
@@ -39,21 +47,32 @@ const Home = () => {
           <span className="loder__text">Загрузка...</span>
         </div>
         ) : (
-        <div className="movies">
-          {currentMovies.map(movie => {
-            return (
-              <Movie 
-                key={movie.id}
-                id={movie.id} 
-                year={movie.year} 
-                title={movie.title} 
-                summary={movie.summary} 
-                poster={movie.medium_cover_image} 
-                genres={movie.genres}
-              />
-            )
-          })}
-          </div>
+          <div className="home__body">
+            <MySelect 
+              value={selectedSort}
+              onChange={sortMovies}
+              defaultValue="сортировка"
+              options={[
+                {value: "title", name: "По названию"},
+                {value: "summary", name: "По описанию"}
+              ]}
+            />  
+            <div className="movies">
+              {currentMovies.map(movie => {
+                return (
+                  <Movie 
+                    key={movie.id}
+                    id={movie.id} 
+                    year={movie.year} 
+                    title={movie.title} 
+                    summary={movie.summary} 
+                    poster={movie.medium_cover_image} 
+                    genres={movie.genres}
+                  />
+                )
+              })}
+            </div>
+          </div> 
         )
       }
       <Pagianation 
