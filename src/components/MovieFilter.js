@@ -2,7 +2,7 @@ import React from "react";
 import MySelect from "../components/MySelect";
 import "../styles/MovieFilter.css"
 
-const MovieFIlter = ({filter, setFilter}) => {
+const MovieFilter = ({filter, setFilter}) => {
 
   return (
     <div className="movie__filter">
@@ -13,7 +13,7 @@ const MovieFIlter = ({filter, setFilter}) => {
       />
       <MySelect 
         value={filter.sort}
-        onChange={selectedSort => setFilter({filter, sort: selectedSort})}
+        onChange={selectedSort => setFilter({...filter, sort: selectedSort})}
         defaultValue="Сортировка"
         options={[
           {value: "title", name: "По названию"},
@@ -24,4 +24,4 @@ const MovieFIlter = ({filter, setFilter}) => {
   )
 }
 
-export default MovieFIlter
+export default MovieFilter
