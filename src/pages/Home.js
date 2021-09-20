@@ -3,7 +3,7 @@ import axios from "axios";
 import Movie from "../components/Movie";
 import Pagianation from "../components/Pagination"
 import "../styles//Home.css";
-import MySelect from "../components/MySelect";
+import MovieFIlter from "../components/MovieFilter";
 
 const Home = () => {
   
@@ -11,14 +11,14 @@ const Home = () => {
   const [movies, setMovies] = React.useState([])
   const [currentPage, setCurrentPage] = React.useState(1);
   const [moviesPerPage] = React.useState(10);
-  const [selectedSort, setSelectedSort] = React.useState("")
+  const [filter, setFilter] = React.useState({sort: "", query: ""})
 
   async function fetchData() {
     const {
       data:
         {data: {movies}
       }
-    } = await axios.get("https://yts.mx/api/v2/list_movies.json")
+    } = await axios.get("https://yts.mx/api/v2/list_movies.json?limit=50")
     setIsLoading(false)
     setMovies(movies)
     console.log(movies)
@@ -33,12 +33,20 @@ const Home = () => {
   const currentMovies = movies.slice(indexOfFirstMovie, indexOfLastMovie);
 
   const paginate = pageNumber => setCurrentPage(pageNumber);
-  
-  const sortMovies = (sort) => {
-    setSelectedSort(sort)
-    setMovies([...movies].sort((a, b) => a[sort].localeCompare(b[sort])))
-  }
 
+  const sortedMovies = React.useMemo(() => {
+    if (filter.sort) {
+      return [...currentMovies].sort((a, b) => a[filter.sort].localeCompare(b[filter.sort]))
+    }
+    else {
+      return currentMovies
+    }
+  }, [filter.sort, currentMovies])
+  
+
+  const sortedAndSearchedMovies = React.useMemo(() => {
+    return sortedMovies.filter(movie => movie.title.toLowerCase().includes(filter.query))
+  }, [filter.query, sortedMovies])
 
   return (
     <section className="container">
@@ -48,17 +56,12 @@ const Home = () => {
         </div>
         ) : (
           <div className="home__body">
-            <MySelect 
-              value={selectedSort}
-              onChange={sortMovies}
-              defaultValue="сортировка"
-              options={[
-                {value: "title", name: "По названию"},
-                {value: "summary", name: "По описанию"}
-              ]}
-            />  
+            <MovieFIlter 
+              filter={filter} 
+              setFilter={setFilter}
+            />
             <div className="movies">
-              {currentMovies.map(movie => {
+              {sortedAndSearchedMovies.map(movie => {
                 return (
                   <Movie 
                     key={movie.id}
