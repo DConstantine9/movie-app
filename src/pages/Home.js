@@ -2,8 +2,8 @@ import React from "react";
 import axios from "axios";
 import Movie from "../components/Movie";
 import Pagianation from "../components/Pagination"
-import "../styles//Home.css";
 import MovieFIlter from "../components/MovieFilter";
+import "../styles//Home.css";
 
 const Home = () => {
   
@@ -18,10 +18,9 @@ const Home = () => {
       data:
         {data: {movies}
       }
-    } = await axios.get("https://yts.mx/api/v2/list_movies.json?limit=50")
+    } = await axios.get("https://yts.mx/api/v2/list_movies.json?limit=50&pages=10")
     setIsLoading(false)
     setMovies(movies)
-    console.log(movies)
   }
     
   React.useEffect(() => {
@@ -47,6 +46,14 @@ const Home = () => {
   const sortedAndSearchedMovies = React.useMemo(() => {
     return sortedMovies.filter(movie => movie.title.toLowerCase().includes(filter.query))
   }, [filter.query, sortedMovies])
+
+  async function pagination(page, limit = 5) {
+    return await axios.get("https://yts.mx/api/v2/list_movies.json?limit=50",
+      {params: {page, limit}}
+    )
+    .then (res => data.res)
+  }
+
 
   return (
     <section className="container">
